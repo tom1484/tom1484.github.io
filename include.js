@@ -1,4 +1,4 @@
-// (function() {
+(function() {
 function include(post_name) {
 	var xhr= new XMLHttpRequest();
 	xhr.open('GET', 'posts/'+post_name+'/preview.html', true);
@@ -9,4 +9,4 @@ function include(post_name) {
 	};
 	xhr.send();
 }
-// })();
+})();
