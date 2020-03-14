@@ -1,0 +1,3 @@
+git add --all
+git commit -m 'update'
+git push https://tom1484:angelus2003611@github.com/tom1484/tom1484.github.io
