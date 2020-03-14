@@ -352,7 +352,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .main {
   margin-top: 3.84rem; }
   .main article {
-    margin-bottom: var(--xl-size); }
+    #margin-bottom: var(--xl-size); }
     .main article article {
       margin-left: auto;
       margin-right: auto; }
@@ -382,7 +382,7 @@ input[type="search"]::-webkit-search-results-decoration {
         color: rgba(51, 51, 51, 0.5);
         font-family: "Source Sans Pro", sans-serif; }
         .main article header .title-and-meta .post-meta > div {
-          /* margin-bottom: 5px; */
+          margin-bottom: 5px;
           margin-right: 0;
           display: flex;
           align-items: center; }
