@@ -7,7 +7,7 @@
 	<link rel="stylesheet"
 	      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-	<script src="w3data.js"></script>
+	<script src="include.js"></script>
 	<link rel="icon" type="image/png" href="assets/logo.png">
 	<title>Tom1484</title>
 </head>
@@ -45,11 +45,9 @@
 	<article>
 		<h1>Latest Posts</h1>
 		
-		<div w3-include-html="posts/template/preview.html"></div>
+		<div id="template"></div>
 
-		<script>
-			w3IncludeHTML();
-		</script>
+		<script> include("template"); </script>
 
 	</article>
 </main>
