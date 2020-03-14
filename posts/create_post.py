@@ -39,7 +39,7 @@ for tag in tags:
     tags_text += "</a>\n"
     tags_text += "</li>\n"
 
-date_text = time.strftime("%b %d, %Y", time.localtime()) 
+date_text = time.strftime("%b %d, %Y %I:%M %p", time.localtime()) 
 
 preview = open(preview_path, "r").read()
 preview_writer = open(preview_path, "w")
