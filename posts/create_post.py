@@ -14,7 +14,9 @@ else:
         sys.exit()
 
 preview_path = post_name+"/preview.html"
-os.system("cp template.html "+post_name+"/preview.html")
+detail_path = post_name+"/detail.html"
+os.system("cp preview_template.html "+preview_path)
+os.system("cp detail_template.html "+detail_path)
 
 title = input("title: ")
 author_img = input("author_img: ")
@@ -27,24 +29,36 @@ while len(tag) > 0:
     tags.append(tag)
     tag = input("add tag: ")
 
+tags_text = ""
+for tag in tags:
+    tags_text += "<li>\n"
+    tags_text += "\t<a href=\"#\">#"
+    tags_text += tag
+    tags_text += "</a>\n"
+    tags_text += "</li>\n"
+
+date_text = time.strftime("%b %d, %Y", time.localtime()) 
+
 preview = open(preview_path, "r").read()
 preview_writer = open(preview_path, "w")
+detail = open(detail_path, "r").read()
+detail_writer = open(detail_path, "w")
 
 preview = preview.replace("_title", title)
 preview = preview.replace("_author_img", author_img)
 preview = preview.replace("_author_name", author_name)
 preview = preview.replace("_author_role", author_role)
-
-tags_text = ""
-for tag in tags:
-    tags_text += "\t\t\t\t\t\t<li>\n"
-    tags_text += "\t\t\t\t\t\t\t<a href=\"#\">#"
-    tags_text += tag
-    tags_text += "</a>\n"
-    tags_text += "\t\t\t\t\t\t</li>\n"
 preview = preview.replace("_tags", tags_text)
-
-date_text = time.strftime("%b %d, %Y", time.localtime()) 
 preview = preview.replace("_date", date_text)
+preview = preview.replace("_folder", post_name)
 
 preview_writer.write(preview)
+
+detail = detail.replace("_title", title)
+detail = detail.replace("_author_img", author_img)
+detail = detail.replace("_author_name", author_name)
+detail = detail.replace("_author_role", author_role)
+detail = detail.replace("_tags", tags_text)
+detail = detail.replace("_date", date_text)
+
+detail_writer.write(detail)
