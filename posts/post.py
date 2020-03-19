@@ -13,6 +13,7 @@ if not os.path.exists(post_name):
     os.system("cp preview_template.html "+preview_path)
     os.system("cp detail_template.html "+detail_path)
     os.system("cp meta-data_template.json "+meta_path)
+    sys.exit()
 
 meta = json.loads(open(meta_path, 'r').read())
 
