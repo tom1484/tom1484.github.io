@@ -16,7 +16,7 @@ function includePreview(category) {
 	for (var post in posts) {
 		
 		var xhr= new XMLHttpRequest();
-		xhr.open('GET', 'posts/'+post+'/meta-data.json', true);
+		xhr.open('GET', 'posts/'+posts[post]+'/meta-data.json', true);
 		xhr.onreadystatechange= function() {
 			if (this.readyState !== 4) return;
 			if (this.status !== 200) return; // or whatever error handling you want
@@ -25,6 +25,6 @@ function includePreview(category) {
 		xhr.send();
 		
 	}
-	// alert(posts_meta);
+	alert(posts_meta);
 	
 }
