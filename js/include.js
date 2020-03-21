@@ -42,6 +42,6 @@ function includePreview(category) {
 		return 0;
 	}
 	meta.sort(compareTime);
-	console.log(posts);
+	console.log(meta);
 	
 }
