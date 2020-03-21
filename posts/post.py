@@ -22,19 +22,18 @@ if not os.path.exists(post_name):
     sys.exit()
 
 meta = json.loads(open(meta_path, 'r').read())
+meta["folder"] = post_name
+meta["date"] = time.strftime("%b %d, %Y %I:%M %p", time.localtime()) 
+meta["time"] = time.time()
 
 if meta["title"] == "":
     meta["title"] = post_name
-if meta["folder"] == "":
-    meta["folder"] = post_name
 if meta["author_img"] == "":
     meta["author_img"] = "author_mini.png"
 if meta["author_name"] == "":
     meta["author_name"] = "Tom Chen"    
 if meta["author_role"] == "":
     meta["author_role"] = "Admin"
-if meta["date"] == "":
-    meta["date"] = time.strftime("%b %d, %Y %I:%M %p", time.localtime()) 
 # if "" not in meta:
     # meta[""] = 
 
