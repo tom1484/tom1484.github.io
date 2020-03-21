@@ -14,8 +14,17 @@ function includePreview(category) {
 	xhr.send();
 
 	for (var post in posts) {
-		posts_meta.push(posts[post]);
+		
+		var xhr= new XMLHttpRequest();
+		xhr.open('GET', 'posts/posts.json', true);
+		xhr.onreadystatechange= function() {
+			if (this.readyState !== 4) return;
+			if (this.status !== 200) return; // or whatever error handling you want
+			posts_meta.push(JSON.parse(this.responseText));
+		};
+		xhr.send();
+		
 	}
-	alert(posts_meta);
+	// alert(posts_meta);
 	
 }
