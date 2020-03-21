@@ -42,6 +42,6 @@ function includePreview(category) {
 		return 0;
 	}
 	meta.sort(compareTime);
-	alert(meta);
+	console.log(meta);
 	
 }
