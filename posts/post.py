@@ -10,9 +10,15 @@ meta_path = post_name+"/meta-data.json"
 
 if not os.path.exists(post_name): 
     os.system("mkdir "+post_name)
-    os.system("cp preview_template.html "+preview_path)
-    os.system("cp detail_template.html "+detail_path)
-    os.system("cp meta-data_template.json "+meta_path)
+    os.system("cp templates/preview_template.html "+preview_path)
+    os.system("cp templates/detail_template.html "+detail_path)
+    os.system("cp templates/meta-data_template.json "+meta_path)
+    
+    posts = json.loads(open("posts.json", "r").read())
+    posts_writer = open("posts.json", "w")
+    posts.append(post_name)
+    posts_writer.write(json.dumps(posts))
+
     sys.exit()
 
 meta = json.loads(open(meta_path, 'r').read())
