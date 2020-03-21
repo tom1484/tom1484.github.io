@@ -25,6 +25,6 @@ function includePreview(category) {
 		xhr.send();
 		
 	}
-	alert(posts_meta);
+	// alert(posts_meta);
 	
 }
