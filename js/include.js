@@ -138,10 +138,9 @@ function includePreview(category) {
 	}
 	meta.sort(compareTime);
 
-
 	list = document.getElementById("list");
 	for (var i in meta) {
-		var valid = category == "latest";
+		var valid = (category == "latest");
 		var tags = meta[i]["tags"];
 		if (!valid)
 			for (var j in tags)
