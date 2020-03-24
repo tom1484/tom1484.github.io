@@ -1,6 +1,5 @@
 function includePreview(category) {
 
-	var list = document.getElementById("list");
 	var posts;
 	var meta = [];
 
@@ -29,7 +28,7 @@ function includePreview(category) {
 				return; // or whatever error handling you want
 			meta.push(JSON.parse(this.responseText));
 
-			if (i == posts.length) {
+			if (i == posts.length-1) {
 				
 				function compareTime(a, b) {
 					if (a["time"] < b["time"])
@@ -53,7 +52,8 @@ function includePreview(category) {
 							return; // or whatever error handling you want
 						meta[j]["preview"] = this.responseText;
 						
-						if (j == meta.length) {
+						if (j == meta.length-1) {
+							list = document.getElementById("list");
 							for (var k in meta)
 								list.innerHTML += meta[k]["preview"]			
 						}
