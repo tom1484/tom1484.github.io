@@ -109,6 +109,7 @@ function includePreview(category) {
 		xhr.send();	
 	
 	}
+	console.log(meta);
 
 	for (var i in meta) {
 
