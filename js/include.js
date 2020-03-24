@@ -43,12 +43,11 @@ function includePreview(category) {
 	}
 	meta.sort(compareTime);
 
-	for (var key in meta) {
+	for (var i in meta) {
 		
-		var folder = meta[key]["folder"];
+		var folder = meta[i]["folder"];
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'posts/'+folder+'/preview.html', false);
-		xhr.open('GET', 'posts/'+folder+'/preview.html', false);
+		xhr.open('GET', 'posts/'+folder+'/preview.html', true);
 		xhr.onreadystatechange = function() {
 	
 			if (this.readyState !== 4) 
@@ -56,8 +55,11 @@ function includePreview(category) {
 			if (this.status !== 200) 
 				return; // or whatever error handling you want
 			// meta[key].set("preview", this.responseText);
-			// meta[key]["preview"] = this.responseText;
-			list.innerHTML += this.responseText;
+			meta[key]["preview"] = this.responseText;
+			list.innerHTML = ""
+			for (var j in meta)
+				list.innerHTML += meta[j]["preview"]
+			// list.innerHTML += this.responseText;
 			// console.log(this.responseText);
 		};
 		xhr.send();
