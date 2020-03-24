@@ -17,10 +17,10 @@ function includePreview(category) {
 	};
 	xhr.send();
 
-	for (var post in posts) {
+	for (var key in posts) {
 	
 		var xhr= new XMLHttpRequest();
-		xhr.open('GET', 'posts/'+posts[post]+'/meta-data.json', false);
+		xhr.open('GET', 'posts/'+posts[key]+'/meta-data.json', false);
 		xhr.onreadystatechange= function() {
 	
 			if (this.readyState !== 4) 
@@ -43,5 +43,10 @@ function includePreview(category) {
 	}
 	meta.sort(compareTime);
 	console.log(meta);
-	
+
+	for (var key in meta) {
+		 var folder = meta[key]["folder"];
+		console.log(folder);
+	}
+
 }
