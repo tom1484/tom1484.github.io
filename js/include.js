@@ -138,7 +138,14 @@ function includePreview(category) {
 
 
 	list = document.getElementById("list");
-	for (var i in meta)
-		list.innerHTML += meta[i]["preview"]			
-
+	for (var i in meta) {
+		var valid = category == "latest";
+		var tags = meta[i]["tags"];
+		if (!valid)
+			for (var j in tags)
+				if (tags[j] == category)
+					valid = true;
+		if (valid)
+			list.innerHTML += meta[i]["preview"];
+	}
 }
