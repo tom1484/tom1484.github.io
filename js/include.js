@@ -55,7 +55,8 @@ function includePreview(category) {
 			if (this.status !== 200) 
 				return; // or whatever error handling you want
 			// meta[key].set("preview", this.responseText);
-			meta[key]["preview"] = this.responseText;
+			// meta[key]["preview"] = this.responseText;
+			list.innerHTML += this.responseText;
 			// console.log(this.responseText);
 		};
 		xhr.send();
