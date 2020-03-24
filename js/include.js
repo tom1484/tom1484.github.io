@@ -42,11 +42,24 @@ function includePreview(category) {
 		return 0;
 	}
 	meta.sort(compareTime);
-	console.log(meta);
 
 	for (var key in meta) {
-		 var folder = meta[key]["folder"];
-		console.log(folder);
+		
+		var folder = meta[key]["folder"];
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', 'posts/'+folder+'preview.html', true);
+		xhr.onreadystatechange= function() {
+	
+			if (this.readyState !== 4) 
+				return;
+			if (this.status !== 200) 
+				return; // or whatever error handling you want
+			meta[key].set("preview", JSON.parse(this.responseText));
+		
+		};
+		xhr.send();
+		// console.log(folder);
 	}
+	console.log(meta);
 
 }
