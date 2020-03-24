@@ -47,7 +47,7 @@ function includePreview(category) {
 		
 		var folder = meta[key]["folder"];
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'posts/'+folder+'preview.html', true);
+		xhr.open('GET', 'posts/'+folder+'/preview.html', true);
 		xhr.onreadystatechange= function() {
 	
 			if (this.readyState !== 4) 
