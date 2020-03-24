@@ -47,15 +47,15 @@ function includePreview(category) {
 		
 		var folder = meta[key]["folder"];
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'posts/'+folder+'/preview.html', true);
+		xhr.open('GET', 'posts/'+folder+'/preview.html', false);
 		xhr.onreadystatechange= function() {
 	
 			if (this.readyState !== 4) 
 				return;
 			if (this.status !== 200) 
 				return; // or whatever error handling you want
-			meta[key].set("preview", JSON.parse(this.responseText));
-		
+			// meta[key].set("preview", JSON.parse(this.responseText));
+			console.log(JSON.parse(this.responseText));
 		};
 		xhr.send();
 		// console.log(folder);
