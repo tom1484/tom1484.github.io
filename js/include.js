@@ -17,10 +17,10 @@ function includePreview(category) {
 	};
 	xhr.send();
 
-	for (var key in posts) {
+	for (var i in posts) {
 	
 		var xhr= new XMLHttpRequest();
-		xhr.open('GET', 'posts/'+posts[key]+'/meta-data.json', false);
+		xhr.open('GET', 'posts/'+posts[i]+'/meta-data.json', true);
 		xhr.onreadystatechange= function() {
 	
 			if (this.readyState !== 4) 
@@ -28,42 +28,47 @@ function includePreview(category) {
 			if (this.status !== 200) 
 				return; // or whatever error handling you want
 			meta.push(JSON.parse(this.responseText));
+
+			if (i == posts.length) {
+				
+				function compareTime(a, b) {
+					if (a["time"] < b["time"])
+						return -1;
+					if (a["time"] > b["time"])
+						return 1;
+					return 0;
+				}
+				meta.sort(compareTime);
+
+				for (var j in meta) {
+		
+					var folder = meta[j]["folder"];
+					var xhr = new XMLHttpRequest();
+					xhr.open('GET', 'posts/'+folder+'/preview.html', true);
+					xhr.onreadystatechange = function() {
+				
+						if (this.readyState !== 4) 
+							return;
+						if (this.status !== 200) 
+							return; // or whatever error handling you want
+						meta[j]["preview"] = this.responseText;
+						
+						if (j == meta.length) {
+							for (var k in meta)
+								list.innerHTML += meta[k]["preview"]			
+						}
+					};
+					xhr.send();
+	
+	}
+
+			}
 		
 		};
 		xhr.send();	
 	
 	}
 
-	function compareTime(a, b) {
-		if (a["time"] < b["time"])
-			return -1;
-		if (a["time"] > b["time"])
-			return 1;
-		return 0;
-	}
-	meta.sort(compareTime);
-
-	for (var i in meta) {
-		
-		var folder = meta[i]["folder"];
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'posts/'+folder+'/preview.html', true);
-		xhr.onreadystatechange = function() {
 	
-			if (this.readyState !== 4) 
-				return;
-			if (this.status !== 200) 
-				return; // or whatever error handling you want
-			// meta[key].set("preview", this.responseText);
-			meta[i]["preview"] = this.responseText;
-			list.innerHTML = ""
-			for (var j in meta)
-				list.innerHTML += meta[j]["preview"]
-			// list.innerHTML += this.responseText;
-			// console.log(this.responseText);
-		};
-		xhr.send();
-	
-	}
 
 }
