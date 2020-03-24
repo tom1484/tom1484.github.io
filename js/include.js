@@ -48,6 +48,7 @@ function includePreview(category) {
 		var folder = meta[key]["folder"];
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', 'posts/'+folder+'/preview.html', false);
+		xhr.open('GET', 'posts/'+folder+'/preview.html', false);
 		xhr.onreadystatechange = function() {
 	
 			if (this.readyState !== 4) 
@@ -60,8 +61,7 @@ function includePreview(category) {
 			// console.log(this.responseText);
 		};
 		xhr.send();
-		console.log(folder);
+	
 	}
-	console.log(meta);
 
 }
