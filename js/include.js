@@ -91,6 +91,7 @@ function includePreview(category) {
 	
 	};
 	xhr.send();
+	console.log(posts);
 
 	for (var i in posts) {
 	
