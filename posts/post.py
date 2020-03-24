@@ -2,11 +2,16 @@ import os
 import sys
 import json
 import time
+import re
 
 post_name = input("post_name: ")
 preview_path = post_name+"/preview.html"
 detail_path = post_name+"/detail.html"
 meta_path = post_name+"/meta-data.json"
+
+# os.system("cp templates/preview_template.html "+preview_path)
+# os.system("cp templates/detail_template.html "+detail_path)
+# os.system("cp templates/meta-data_template.json "+meta_path)
 
 if not os.path.exists(post_name): 
     os.system("mkdir "+post_name)
@@ -21,7 +26,17 @@ if not os.path.exists(post_name):
 
     sys.exit()
 
+preview = open(preview_path, "r").read()
+preview_writer = open(preview_path, "w")
+detail = open(detail_path, "r").read()
+detail_writer = open(detail_path, "w")
 meta = json.loads(open(meta_path, 'r').read())
+meta_writer = open(meta_path, "w")
+
+content_pattern = re.compile(r'<!-- content -->.*<!-- content -->', re.DOTALL)
+preview_content = re.search(content_pattern, preview)
+detail_content = re.search(content_pattern, detail)
+
 meta["folder"] = post_name
 meta["date"] = time.strftime("%b %d, %Y %I:%M %p", time.localtime()) 
 meta["time"] = time.time()
@@ -51,12 +66,6 @@ for tag in meta["tags"]:
     tags += "</li>\n"
 
 date = meta["date"] 
-
-preview = open(preview_path, "r").read()
-preview_writer = open(preview_path, "w")
-detail = open(detail_path, "r").read()
-detail_writer = open(detail_path, "w")
-meta_writer = open(meta_path, "w")
 
 preview = preview.replace("_title", title)
 preview = preview.replace("_author_img", author_img)
